@@ -1,0 +1,35 @@
+{% extends 'Layout.html' %}
+
+{% block content %}
+
+    <div class="card border-secondary mb-3 col-12" style="height: 90vh">
+        <div class="card-header">
+            {{ title }}
+        </div>
+        <div class="card-body text-success">
+            <form method="post" class="col-4">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <input class="btn btn-primary" type="submit" value="确定">
+            </form>
+        </div>
+    </div>
+{% endblock %}
+
+{% block list %}
+    <li class="breadcrumb-item active" aria-current="page">
+        <a href="/collegeadmin/undo-list">待审核课题列表</a>
+    </li>
+    <li class="breadcrumb-item active" aria-current="page">
+        审核课题
+    </li>
+{% endblock %}
+
+{% block script %}
+    <script>
+        $(document).ready(function () {
+            const thisLink = $('#2');
+            thisLink.removeClass("link-dark").addClass("active").attr('aria-current', 'page')
+        });
+    </script>
+{% endblock %}

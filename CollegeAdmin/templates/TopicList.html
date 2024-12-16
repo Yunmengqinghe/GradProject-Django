@@ -1,0 +1,90 @@
+{% extends 'Layout.html' %}
+
+{% block content %}
+    {% for review in review_lists %}
+        {% if review.status == 1 %}
+            <div class="card border-success mb-3">
+                <div class="card-header">{{ review.topic.name }}</div>
+                <div class="card-body text-success">
+                    <p class="card-text">
+                        导师：{{ review.topic.mentor.name }}
+                        研究方向：{{ research_area }}
+                    </p>
+                </div>
+            </div>
+        {% else %}
+            <div class="card border-danger mb-3">
+                <div class="card-header">{{ review.topic.name }}</div>
+                <div class="card-body text-danger">
+                    <p class="card-text">
+                        导师：{{ review.topic.mentor.name }}
+                        研究方向：{{ research_area }}
+                    </p>
+                </div>
+            </div>
+        {% endif %}
+    {% endfor %}
+    {% if is_paginated %}
+
+        <ul class="pagination">
+            {% if page_obj.has_previous %}
+                <li class="page-item">
+                    <a class="page-link" href="/collegeadmin/list?page={{ page_obj.previous_page_number }}"
+                       aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                    </a>
+                </li>
+            {% else %}
+                <li class="page-item disabled">
+                    <a class="page-link" href="#" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                    </a>
+                </li>
+            {% endif %}
+            {% for current in paginator.page_range %}
+                {% if current == page_obj.number %}
+                    <li class="page-item active">
+                        <a class="page-link" href="/collegeadmin/list?page={{ current }}">
+                            {{ current }}
+                        </a>
+                    </li>
+                {% else %}
+                    <li class="page-item">
+                        <a class="page-link" href="/collegeadmin/list?page={{ current }}">
+                            {{ current }}
+                        </a>
+                    </li>
+                {% endif %}
+            {% endfor %}
+            {% if page_obj.has_next %}
+                <li class="page-item">
+                    <a class="page-link" href="/collegeadmin/list?page={{ page_obj.next_page_number }}"
+                       aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                    </a>
+                </li>
+            {% else %}
+                <li class="page-item disabled">
+                    <a class="page-link" href="" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                    </a>
+                </li>
+            {% endif %}
+        </ul>
+    {% endif %}
+{% endblock %}
+
+{% block list %}
+    <li class="breadcrumb-item active" aria-current="page">
+        学院课题列表
+    </li>
+{% endblock %}
+
+{% block script %}
+    <script>
+        $(document).ready(function () {
+            const thisLink = $('#1');
+            thisLink.removeClass("link-dark").addClass("active").attr('aria-current', 'page')
+        });
+    </script>
+{% endblock %}

@@ -1,0 +1,19 @@
+{% extends 'Layout.html' %}
+
+{% block content %}
+{% endblock %}
+
+{% block list %}
+    <li class="breadcrumb-item active" aria-current="page">
+        学生答辩评分
+    </li>
+{% endblock %}
+
+{% block script %}
+    <script>
+        $(document).ready(function () {
+            const thisLink = $('#3');
+            thisLink.removeClass("link-dark").addClass("active").attr('aria-current', 'page')
+        });
+    </script>
+{% endblock %}

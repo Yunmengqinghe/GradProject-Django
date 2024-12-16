@@ -1,0 +1,122 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>管理员后台</title>
+    <link rel="stylesheet" href="{% static 'plugin/bootstrap-5.3.0-alpha1-dist/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/sidebars.css' %}">
+    <link rel="stylesheet" href="{% static 'css/headers.css' %}">
+    <link rel="stylesheet" href="{% static 'plugin/bootstrap-icons-1.11.3/font/bootstrap-icons.css' %}">
+    <style>
+        body {
+            background-color: rgba(0, 0, 0, .1);
+            border: 0;
+            padding: 0;
+            margin: 0;
+        }
+
+        .nav li {
+            margin-top: 5px;
+            margin-bottom: 10px;
+        }
+
+        {% block css %}{% endblock %}
+    </style>
+</head>
+
+<body>
+<div class="container-fluid">
+    <div class="row">
+        <div class="d-flex flex-column flex-shrink-0 p-3 bg-light col-2" style="height: 100vh;">
+            <a href="#"
+               class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none fs-4">
+                <i class="bi bi-card-text ms-5 me-2"></i>
+                管理员后台
+            </a>
+            <hr>
+            <ul class="nav nav-pills flex-column mb-auto">
+                <li>
+                    <a href="/collegeadmin/list" id="1" class="nav-link link-dark fs-5">
+                        <i class="bi bi-list-check ms-2 me-2"></i>
+                        学院课题列表
+                    </a>
+                </li>
+                <li>
+                    <a href="/collegeadmin/undo-list" id="2" class="nav-link link-dark fs-5">
+                        <i class="bi bi-list ms-2 me-2"></i>
+                        待审核课题列表
+                    </a>
+                </li>
+                <li>
+                    <a href="/collegeadmin/score" id="3" class="nav-link link-dark fs-5">
+                        <i class="bi bi-clipboard2-check ms-2 me-2"></i>
+                        学生答辩评分
+                    </a>
+                </li>
+            </ul>
+            <hr>
+            <div class="dropdown">
+                <a href="#" class="d-flex align-items-center link-dark text-decoration-none dropdown-toggle"
+                   data-bs-toggle="dropdown" aria-expanded="false">
+                    <i class="bi bi-person-circle ms-2 me-2"></i>
+                    <strong>我的账号</strong>
+                </a>
+                <ul class="dropdown-menu text-small shadow">
+                    <li><a class="dropdown-item" href="/collegeadmin/info">信息管理</a></li>
+                    <li>
+                        <hr class="dropdown-divider">
+                    </li>
+                    <li><a class="dropdown-item" href="/logout">登出</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-10">
+            <header
+                    class="d-flex justify-content-between align-items-center py-3 bg-light rounded shadow-sm mt-1 col-12">
+                <nav class="navbar navbar-expand-lg fs-6">
+                    <ol class="breadcrumb mb-0 ms-4">
+                        {% block list %}{% endblock %}
+                    </ol>
+                </nav>
+                <div class="d-flex align-items-center">
+                    <a href="#" class="position-relative me-5">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                             class="bi bi-bell" viewBox="0 0 16 16">
+                            <path
+                                    d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2zM8 1.918l-.797.161A4.002 4.002 0 0 0 4 6c0 .628-.134 2.197-.459 3.742-.16.767-.376 1.566-.663 2.258h10.244c-.287-.692-.502-1.49-.663-2.258C12.134 8.197 12 6.628 12 6a4.002 4.002 0 0 0-3.203-3.92L8 1.917zM14.22 12c.223.447.481.801.78 1H1c.299-.199.557-.553.78-1C2.68 10.2 3 6.88 3 6c0-2.42 1.72-4.44 4.005-4.901a1 1 0 1 1 1.99 0A5.002 5.002 0 0 1 13 6c0 .88.32 4.2 1.22 6z"/>
+                        </svg>
+                        <span
+                                class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                                0
+                                <span class="visually-hidden">unread messages</span>
+                        </span>
+                    </a>
+                </div>
+            </header>
+            <div class="d-flex col-12 mt-1">
+                {% block content %}{% endblock %}
+            </div>
+        </div>
+    </div>
+
+</div>
+<script src="{% static 'plugin/bootstrap-5.3.0-alpha1-dist/js/bootstrap.bundle.min.js' %}"></script>
+<script src="{% static 'js/sidebars.js' %}"></script>
+<script src="{% static 'js/jquery-3.7.1.min.js' %}"></script>
+<script>
+    {#$(document).ready(function () {#}
+    {#        $('.nav-link').click(function () {#}
+    {#                $(this).removeClass('link-dark').addClass('active');#}
+    {#            }#}
+    {#        );#}
+    {#    }#}
+    {#);#}
+</script>
+{% block script %}{% endblock %}
+
+</body>
+
+</html>

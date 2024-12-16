@@ -1,5 +1,6 @@
 from django.db import models
 
+
 # Create your models here.
 # 学院管理员信息表
 class CollegeAdminInfo(models.Model):
@@ -12,6 +13,9 @@ class CollegeAdminInfo(models.Model):
     class Meta:
         verbose_name = '学院管理员信息'
         verbose_name_plural = '学院管理员信息列表'
+
+    def __str__(self):
+        return f"{self.id} {self.name}"
 
 
 # 课题审核表

@@ -59,7 +59,12 @@ ROOT_URLCONF = 'GPMS.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [
+            BASE_DIR / 'CollegeAdmin/templates',
+            BASE_DIR / 'Student/templates',
+            BASE_DIR / 'Mentor/templates',
+            BASE_DIR / 'College/templates',
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

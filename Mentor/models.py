@@ -1,5 +1,6 @@
 from django.db import models
 
+
 # Create your models here.
 # 导师信息表
 class MentorInfo(models.Model):
@@ -15,6 +16,9 @@ class MentorInfo(models.Model):
         verbose_name = '导师信息'
         verbose_name_plural = '导师信息列表'
 
+    def __str__(self):
+        return self.name
+
 
 # 课题信息表
 class TopicInfo(models.Model):
@@ -29,3 +33,6 @@ class TopicInfo(models.Model):
     class Meta:
         verbose_name = '课题信息'
         verbose_name_plural = '课题信息列表'
+
+    def __str__(self):
+        return self.name

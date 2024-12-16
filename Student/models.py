@@ -16,6 +16,9 @@ class StudentInfo(models.Model):
         verbose_name = '学生信息'
         verbose_name_plural = '学生信息列表'
 
+    def __str__(self):
+        return f"{self.id} {self.name}"
+
 
 # 选题申请表
 class TopicApplication(models.Model):
