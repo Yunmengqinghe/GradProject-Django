@@ -121,21 +121,6 @@
 <script src="{% static 'js/sidebars.js' %}"></script>
 <script src="{% static 'js/jquery-3.7.1.min.js' %}"></script>
 <script>
-    $(window).on('load', function () {
-        const currentPageUrl = window.location.pathname;
-        const urlToClassMap = new Map([
-            ['list', '1'],
-            ['score', '2'],
-        ]);
-
-        for (const [urlPart, urlId] of urlToClassMap) {
-            if (currentPageUrl.includes(urlPart)) {
-                const thisLink = $('#' + urlId);
-                thisLink.addClass('active').removeClass('link-dark').attr('aria-current', 'page');
-                break;
-            }
-        }
-    });
     {% block script %}{% endblock %}
 </script>
 

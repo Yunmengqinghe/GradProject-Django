@@ -22,9 +22,8 @@
             margin-top: 5px;
             margin-bottom: 10px;
         }
-
-        {% block css %}{% endblock %}
     </style>
+    {% block css %}{% endblock %}
 </head>
 
 <body>
@@ -65,7 +64,8 @@
                     <strong>我的账号</strong>
                 </a>
                 <ul class="dropdown-menu text-small shadow">
-                    <li><a class="dropdown-item" href="/collegeadmin/info">信息管理</a></li>
+                    <li><a class="dropdown-item" href="/collegeadmin/info/{% block pk %}{% endblock %}">信息管理</a>
+                    </li>
                     <li>
                         <hr class="dropdown-divider">
                     </li>

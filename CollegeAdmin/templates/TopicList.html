@@ -1,24 +1,33 @@
 {% extends 'Layout.html' %}
 
+{% block pk %}{{ username }}{% endblock %}
+
 {% block content %}
     {% for review in review_lists %}
         {% if review.status == 1 %}
-            <div class="card border-success mb-3">
-                <div class="card-header">{{ review.topic.name }}</div>
+            <div class="card border-success mb-3 col-12 fs-5 mt-1">
+                <div class="card-header text-center">
+                    <a href="/collegeadmin/list/detail/{{ review.id }}">
+                        {{ review.topic.name }}
+                    </a>
+                </div>
                 <div class="card-body text-success">
-                    <p class="card-text">
-                        导师：{{ review.topic.mentor.name }}
-                        研究方向：{{ research_area }}
-                    </p>
+                    <p class="card-text">导师：{{ review.topic.mentor.name }}</p>
+                    <p class="card-text">研究方向：{{ review.research_area }}</p>
                 </div>
             </div>
         {% else %}
-            <div class="card border-danger mb-3">
-                <div class="card-header">{{ review.topic.name }}</div>
+            <div class="card border-danger mb-3 col-12 fs-5">
+                <div class="card-header text-center">
+                    <a href="/collegeadmin/list/detail/{{ review.id }}">
+                        {{ review.topic.name }}
+                    </a>
+                </div>
                 <div class="card-body text-danger">
                     <p class="card-text">
                         导师：{{ review.topic.mentor.name }}
-                        研究方向：{{ research_area }}
+                        <br>
+                        研究方向：{{ review.research_area }}
                     </p>
                 </div>
             </div>

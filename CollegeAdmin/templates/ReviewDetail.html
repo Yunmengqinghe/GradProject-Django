@@ -1,16 +1,18 @@
 {% extends 'Layout.html' %}
 
+{% block pk %}{{ username }}{% endblock %}
+
 {% block content %}
 
-    <div class="card border-secondary mb-3 col-12" style="height: 90vh">
-        <div class="card-header">
+    <div class="card border-secondary mt-1 col-12 fs-5" style="height: 93vh">
+        <div class="card-header text-center">
             {{ title }}
         </div>
-        <div class="card-body text-success">
-            <form method="post" class="col-4">
+        <div class="card-body text-success col-4 offset-4">
+            <form method="post" class="mt-5">
                 {% csrf_token %}
                 {{ form.as_p }}
-                <input class="btn btn-primary" type="submit" value="确定">
+                <input class="btn btn-primary btn-lg col-12" type="submit" value="确定">
             </form>
         </div>
     </div>
@@ -18,7 +20,9 @@
 
 {% block list %}
     <li class="breadcrumb-item active" aria-current="page">
-        <a href="/collegeadmin/undo-list">待审核课题列表</a>
+        <a href="/collegeadmin/undo-list">
+            待审核课题列表
+        </a>
     </li>
     <li class="breadcrumb-item active" aria-current="page">
         审核课题

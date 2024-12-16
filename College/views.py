@@ -14,20 +14,17 @@ def login(request):
         match len(username):
             case 8:
                 student_info = StudentInfo.objects.filter(id = username).first()
-                print(check_password(password, student_info.password))
                 if student_info is not None and check_password(password, student_info.password):
                     request.session['username'] = username
-                    return redirect("")
+                    return redirect('')
             case 7:
-                print('2')
                 mentor_info = MentorInfo.objects.filter(id = username).first()
                 if mentor_info is not None and check_password(password, mentor_info.password):
                     request.session['username'] = username
-                    return redirect("")
+                    return redirect('/teacher/home')
             case 6:
-                print('3')
                 college_info = CollegeAdminInfo.objects.filter(id = username).first()
                 if college_info is not None and check_password(password, college_info.password):
                     request.session['username'] = username
-                    return redirect("")
+                    return redirect('/collegeadmin/list')
     return render(request, 'index.html')

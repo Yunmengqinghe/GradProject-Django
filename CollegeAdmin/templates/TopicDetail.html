@@ -1,0 +1,41 @@
+{% extends 'Layout.html' %}
+
+{% block pk %}{{ username }}{% endblock %}
+
+{% block content %}
+    <div class="card border-secondary mt-1 col-12 fs-4" style="height: 89vh">
+        <div class="card-header text-center">
+            {{ title }}
+        </div>
+        <div class="card-body col-4 offset-4 text-dark">
+            <p>课题编号: {{ topic_detail.topic.id }}</p>
+            <p>课题导师: {{ topic_detail.topic.mentor.name }}</p>
+            <p>课题名称: {{ topic_detail.topic.name }}</p>
+            <p>研究领域: {{ topic_detail.topic.research_area }}</p>
+            <p>最大人数: {{ topic_detail.topic.max_len }}</p>
+            <p>课题要求: {{ topic_detail.topic.requirements }}</p>
+            <p>审核时间: {{ topic_detail.review_date }}</p>
+            <p>审核状态: {{ topic_detail.get_status_display }}</p>
+        </div>
+    </div>
+{% endblock %}
+
+{% block list %}
+    <li class="breadcrumb-item active" aria-current="page">
+        <a href="/collegeadmin/list">
+            学院课题列表
+        </a>
+    </li>
+    <li class="breadcrumb-item active" aria-current="page">
+        课题信息详情
+    </li>
+{% endblock %}
+
+{% block script %}
+    <script>
+        $(document).ready(function () {
+            const thisLink = $('#1');
+            thisLink.removeClass("link-dark").addClass("active").attr('aria-current', 'page')
+        });
+    </script>
+{% endblock %}

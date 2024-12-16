@@ -161,27 +161,7 @@
 <script src="{% static 'js/sidebars.js' %}"></script>
 <script src="{% static 'js/jquery-3.7.1.min.js' %}"></script>
 <script>
-    $(window).on('load', function () {
-        const currentPageUrl = window.location.pathname;
-        const urlToClassMap = new Map([
-            ['home', '1'],
-            ['new', '2'],
-            ['application', '3'],
-            ['stage', '4'],
-            ['communication', '5']
-        ]);
 
-        for (const [urlPart, urlId] of urlToClassMap) {
-            if (currentPageUrl.includes(urlPart)) {
-                const thisLink = $('#' + urlId);
-                thisLink.addClass('active').removeClass('link-dark').attr('aria-current', 'page');
-                $('ol.breadcrumb').append(
-                    `<li class="breadcrumb-item active" aria-current="page">${thisLink.text()}</li>`
-                );
-                break;
-            }
-        }
-    });
     {% block script %}{% endblock %}
 </script>
 
