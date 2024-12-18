@@ -1,0 +1,123 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>管理员后台</title>
+    <link rel="stylesheet" href="{% static 'plugin/bootstrap-5.3.0-alpha1-dist/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/sidebars.css' %}">
+    <link rel="stylesheet" href="{% static 'css/headers.css' %}">
+    <link rel="stylesheet" href="{% static 'plugin/bootstrap-icons-1.11.3/font/bootstrap-icons.css' %}">
+    <style>
+        body {
+            background-color: rgba(0, 0, 0, .1);
+            border: 0;
+            padding: 0;
+            margin: 0;
+        }
+
+        .nav li {
+            margin-top: 5px;
+            margin-bottom: 10px;
+        }
+    </style>
+    {% block css %}{% endblock %}
+</head>
+
+<body>
+<div class="container-fluid">
+    <div class="row">
+        <div class="d-flex flex-column flex-shrink-0 p-3 bg-light col-2"
+             style="position: fixed; height: 100vh; left: 0; top: 0;">
+            <a href="#"
+               class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none fs-4">
+                <i class="bi bi-card-text ms-5 me-2"></i>
+                管理员后台
+            </a>
+            <hr>
+            <ul class="nav nav-pills flex-column mb-auto">
+                <li>
+                    <a href="/collegeadmin/list" id="1" class="nav-link link-dark fs-5">
+                        <i class="bi bi-list-check ms-2 me-2"></i>
+                        学院课题列表
+                    </a>
+                </li>
+                <li>
+                    <a href="/collegeadmin/undo-list" id="2" class="nav-link link-dark fs-5">
+                        <i class="bi bi-list ms-2 me-2"></i>
+                        待审核课题列表
+                    </a>
+                </li>
+                <li>
+                    <a href="/collegeadmin/score" id="3" class="nav-link link-dark fs-5">
+                        <i class="bi bi-clipboard2-check ms-2 me-2"></i>
+                        学生答辩评分
+                    </a>
+                </li>
+            </ul>
+            <hr>
+            <div class="dropdown">
+                <a href="#" class="d-flex align-items-center link-dark text-decoration-none dropdown-toggle"
+                   data-bs-toggle="dropdown" aria-expanded="false">
+                    <i class="bi bi-person-circle ms-2 me-2"></i>
+                    <strong>我的账号</strong>
+                </a>
+                <ul class="dropdown-menu text-small shadow">
+                    <li><a class="dropdown-item" href="/collegeadmin/info/{% block pk %}{% endblock %}">信息管理</a>
+                    </li>
+                    <li>
+                        <hr class="dropdown-divider">
+                    </li>
+                    <li><a class="dropdown-item" href="/logout">登出</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-10" style="margin-left: 16.666%; position: relative;">
+            <header
+                    class="d-flex justify-content-between align-items-center py-3 bg-light rounded shadow-sm col-12"
+                    style="position: fixed; top: 0.666%;height: 7.666%; left: 17%; width: 82.66%; z-index: 1030;">
+                <nav class="navbar navbar-expand-lg fs-6">
+                    <ol class="breadcrumb mb-0 ms-4">
+                        {% block list %}{% endblock %}
+                    </ol>
+                </nav>
+
+                <div class="d-flex align-items-center">
+                    <a href="#" class="position-relative me-5">
+                        <i class="bi bi-person-circle ms-2 me-2"></i>
+                        <span class="position-absolute top-0 start-100
+                            translate-middle badge rounded-pill bg-danger">
+                            0
+                            <span class="visually-hidden">
+                                unread messages
+                            </span>
+                        </span>
+                    </a>
+                </div>
+            </header>
+            <div class="d-flex flex-column col-12" style="margin-top: 4.5rem;">
+                {% block content %}{% endblock %}
+            </div>
+        </div>
+    </div>
+
+</div>
+<script src="{% static 'plugin/bootstrap-5.3.0-alpha1-dist/js/bootstrap.bundle.min.js' %}"></script>
+<script src="{% static 'js/sidebars.js' %}"></script>
+<script src="{% static 'js/jquery-3.7.1.min.js' %}"></script>
+<script>
+    {#$(document).ready(function () {#}
+    {#        $('.nav-link').click(function () {#}
+    {#                $(this).removeClass('link-dark').addClass('active');#}
+    {#            }#}
+    {#        );#}
+    {#    }#}
+    {#);#}
+</script>
+{% block script %}{% endblock %}
+
+</body>
+
+</html>

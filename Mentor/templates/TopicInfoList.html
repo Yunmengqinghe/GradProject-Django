@@ -1,30 +1,28 @@
-{% extends 'CLayout.html' %}
-
+{% extends 'MLayout.html' %}
 {% block pk %}{{ username }}{% endblock %}
-
 {% block content %}
-    {% for review in review_lists %}
-        <div class="card border-secondary mb-3 col-12 fs-5 mt-1">
+    {% for review in reviews %}
+        <div class="col-12 card border-success fs-5 mt-1">
             <div class="card-header text-center">
-                <a href="/collegeadmin/undo-list/update/{{ review.id }}">
-                    {{ review.topic.name }}
-                </a>
+                {{ review.topic.name }}
             </div>
-            <div class="card-body text-success">
-                <p class="card-text">
-                    导师：{{ review.topic.mentor.name }}
-                </p>
-                <p class="card-text">
-                    研究方向：{{ research_area }}
-                </p>
+            <div class="card-body text-dark">
+                <p>课题编号: {{ review.topic.id }}</p>
+                <p>课题名称: {{ review.topic.name }}</p>
+                <p>研究领域: {{ review.topic.research_area }}</p>
+                <p>最大人数: {{ review.topic.max_len }}</p>
+                <p>课题要求: {{ review.topic.requirements }}</p>
+                <p>审核时间: {{ review.review_date }}</p>
+                <p>审核状态: {{ review.get_status_display }}</p>
             </div>
         </div>
     {% endfor %}
+
     {% if is_paginated %}
-        <ul class="pagination">
+        <ul class="pagination mt-1">
             {% if page_obj.has_previous %}
                 <li class="page-item">
-                    <a class="page-link" href="/collegeadmin/undo-list?page={{ page_obj.previous_page_number }}"
+                    <a class="page-link" href="/teacher/home?page={{ page_obj.previous_page_number }}"
                        aria-label="Previous">
                         <span aria-hidden="true">&laquo;</span>
                     </a>
@@ -39,13 +37,13 @@
             {% for current in paginator.page_range %}
                 {% if current == page_obj.number %}
                     <li class="page-item active">
-                        <a class="page-link" href="/collegeadmin/undo-list?page={{ current }}">
+                        <a class="page-link" href="/teacher/home?page={{ current }}">
                             {{ current }}
                         </a>
                     </li>
                 {% else %}
                     <li class="page-item">
-                        <a class="page-link" href="/collegeadmin/undo-list?page={{ current }}">
+                        <a class="page-link" href="/teacher/home?page={{ current }}">
                             {{ current }}
                         </a>
                     </li>
@@ -53,14 +51,14 @@
             {% endfor %}
             {% if page_obj.has_next %}
                 <li class="page-item">
-                    <a class="page-link" href="/collegeadmin/undo-list?page={{ page_obj.next_page_number }}"
+                    <a class="page-link" href="/teacher/home?page={{ page_obj.next_page_number }}"
                        aria-label="Next">
                         <span aria-hidden="true">&raquo;</span>
                     </a>
                 </li>
             {% else %}
                 <li class="page-item disabled">
-                    <a class="page-link" href="#" aria-label="Next">
+                    <a class="page-link" href="" aria-label="Next">
                         <span aria-hidden="true">&raquo;</span>
                     </a>
                 </li>
@@ -71,14 +69,14 @@
 
 {% block list %}
     <li class="breadcrumb-item active" aria-current="page">
-        待审核课题列表
+        我的课题
     </li>
 {% endblock %}
 
 {% block script %}
     <script>
         $(document).ready(function () {
-            const thisLink = $('#2');
+            const thisLink = $('#1');
             thisLink.removeClass("link-dark").addClass("active").attr('aria-current', 'page')
         });
     </script>

@@ -22,7 +22,7 @@ urlpatterns = [
     path('', College.views.login),
     path('admin/', admin.site.urls),
     path('college/', include(('College.urls', 'college'), namespace = 'college')),
-    path('mentor/', include(('Mentor.urls', 'mentor'), namespace = 'mentor')),
+    path('teacher/', include(('Mentor.urls', 'mentor'), namespace = 'teacher')),
     path('student/', include(('Student.urls', 'student'), namespace = 'student')),
     path('collegeadmin/', include(('CollegeAdmin.urls', 'collegeadmin'), namespace = 'collegeadmin')),
 

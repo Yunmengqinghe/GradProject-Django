@@ -6,7 +6,7 @@ from CollegeAdmin.form import ReviewUpdateForm, AdminInfoUpdateForm
 
 
 class TopicListView(ListView):
-    template_name = 'TopicList.html'
+    template_name = 'TopicListView.html'
     queryset = TopicReview.objects.exclude(status = 0).order_by('-id')
     paginate_by = 10
     context_object_name = 'review_lists'
@@ -30,11 +30,16 @@ class TopicReviewListView(ListView):
 
 
 class ReviewUpdateView(UpdateView):
-    template_name = 'ReviewDetail.html'
+    template_name = 'ReviewDetailView.html'
     model = TopicReview
     form_class = ReviewUpdateForm
     success_url = '/collegeadmin/undo-list'
     extra_context = {'title': '审核课题'}
+
+    def get_form_kwargs(self):
+        kwargs = super().get_form_kwargs()
+        kwargs['request'] = self.request
+        return kwargs
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -43,7 +48,7 @@ class ReviewUpdateView(UpdateView):
 
 
 class TopicDetailView(DetailView):
-    template_name = 'TopicDetail.html'
+    template_name = 'TopicDetailView.html'
     extra_context = {'title': '课题信息详情'}
     model = TopicReview
     context_object_name = 'topic_detail'

@@ -1,0 +1,29 @@
+{% extends 'MLayout.html' %}
+{% block pk %}{{ username }}{% endblock %}
+{% block content %}
+    <div class="card border-success mb-3 col-12 fs-5 mt-1" style="height:90vh">
+        <div class="card-header text-center">
+            {{ title }}
+        </div>
+        <form method="post" class="col-4 offset-4">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-primary col-12">提交</button>
+        </form>
+    </div>
+{% endblock %}
+
+{% block list %}
+    <li class="breadcrumb-item active" aria-current="page">
+        我的课题
+    </li>
+{% endblock %}
+
+{% block script %}
+    <script>
+        $(document).ready(function () {
+            const thisLink = $('#2');
+            thisLink.removeClass("link-dark").addClass("active").attr('aria-current', 'page')
+        });
+    </script>
+{% endblock %}

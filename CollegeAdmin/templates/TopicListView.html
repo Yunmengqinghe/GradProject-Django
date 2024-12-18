@@ -1,4 +1,4 @@
-{% extends 'Layout.html' %}
+{% extends 'CLayout.html' %}
 
 {% block pk %}{{ username }}{% endblock %}
 
@@ -24,11 +24,8 @@
                     </a>
                 </div>
                 <div class="card-body text-danger">
-                    <p class="card-text">
-                        导师：{{ review.topic.mentor.name }}
-                        <br>
-                        研究方向：{{ review.research_area }}
-                    </p>
+                    <p class="card-text">导师：{{ review.topic.mentor.name }}</p>
+                    <p class="card-text">研究方向：{{ review.research_area }}</p>
                 </div>
             </div>
         {% endif %}

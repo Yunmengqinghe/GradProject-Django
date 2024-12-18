@@ -22,9 +22,8 @@ class CollegeAdminInfo(models.Model):
 class TopicReview(models.Model):
     topic = models.ForeignKey('Mentor.TopicInfo', on_delete = models.CASCADE, related_name = 'topic_reviews',
                               verbose_name = '课题编号')
-    collegeAdmin = models.ForeignKey('CollegeAdminInfo', on_delete = models.CASCADE,
-                                     related_name = 'admin_topic_reviews',
-                                     verbose_name = '管理员编号')
+    collegeAdmin = models.ForeignKey('CollegeAdminInfo', blank = True, null = True, on_delete = models.CASCADE,
+                                     related_name = 'admin_topic_reviews', verbose_name = '管理员编号', )
     review_date = models.DateTimeField(blank = True, null = True, verbose_name = '审核日期')
     STATUS_CHOICES = [
         (0, '待审核'),

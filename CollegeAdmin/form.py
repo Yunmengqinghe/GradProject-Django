@@ -30,30 +30,23 @@ class ReviewUpdateForm(ModelForm):
         required = False,
         label = '课题信息'
     )
-    collegeAdmin_display = forms.CharField(
-        widget = forms.TextInput(attrs = {
-            'readonly': 'readonly',
-            'class': 'form-control-plaintext'
-        }),
-        required = False,
-        label = '管理员信息'
-    )
 
     class Meta:
         model = TopicReview
-        fields = ['review_date', 'status']
+        fields = ['collegeAdmin', 'review_date', 'status']
         widgets = {
+            'collegeAdmin': forms.Select(attrs = {'class': 'form-select'}),
             'review_date': forms.DateTimeInput(attrs = {'class': 'form-control', 'type': 'datetime-local'}),
             'status': forms.Select(attrs = {'class': 'form-select'})
         }
 
     def __init__(self, *args, **kwargs):
+        request = kwargs.pop('request', None)
         super(ReviewUpdateForm, self).__init__(*args, **kwargs)
+
         self.fields['status'].choices = TopicReview.STATUS_CHOICES
 
         topic_info = self.instance.topic
-        college_admin_info = self.instance.collegeAdmin
-
         self.fields['topic_display'].initial = (
             f"课题编号: {topic_info.id}\n"
             f"课题名称: {topic_info.name}\n"
@@ -62,4 +55,7 @@ class ReviewUpdateForm(ModelForm):
             f"课题要求: {topic_info.requirements}"
         )
 
-        self.fields['collegeAdmin_display'].initial = f"姓名: {college_admin_info.name}"
+        if request:
+            current_username = request.session.get('username')
+            if current_username:
+                self.fields['collegeAdmin'].queryset = CollegeAdminInfo.objects.filter(id = current_username)
